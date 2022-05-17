@@ -1,0 +1,75 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Forms {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Sites</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Setup</a></li>
+                            <li class="breadcrumb-item"><a href="/site">Sites</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Add Site</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Add Site</h5>
+                            </div>
+                            <div class="card-body">
+                                <form name="form2" action="/submitsite" method="post" enctype="multipart/form-data">{% csrf_token %}
+                                    <div class="form-group">
+                                        <label>Select Customer</label>
+                                        <select name="select_customer" class="form-control">
+                                            {% for cust in customers %}
+                                            <option value={{cust.id}}>{{cust.cust_name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Site Name</label>
+                                        <input type="text" class="form-control" name="site_name" placeholder="Enter Site Name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-check-label">
+                                            <label>Active</label>
+                                            <input type="checkbox" name="site_status">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

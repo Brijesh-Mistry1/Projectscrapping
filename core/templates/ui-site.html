@@ -1,0 +1,86 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Forms {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Sites</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Setup</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Sites</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        {% if message %}
+                            <center><span style="color:red;">{{message}}</span></center>
+                        {% endif %}
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Site Details</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Site Name</th>
+                                                <th>Customer</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for site in sites %}
+                                            <tr>
+                                                <td>{{site.site_name}}</td>
+                                                <td>{{site.select_customer.cust_name}}</td>
+                                                {% if site.site_status == True %}
+                                                <td>Active</td>
+                                                {% else %}
+                                                <td>Inactive</td>
+                                                {% endif %}
+                                                <td>
+                                                    <a href="/edit_site/{{site.id}}">Edit</a>
+                                                    &nbsp;<a href="/delete_site/{{site.id}}" onclick="return confirm('Are you sure you want to delete {{site.site_name}}')">Delete</a>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ Main Content ] end -->
+                <a class="btn btn-success" href="/addsite">Add Site</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

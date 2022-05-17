@@ -1,0 +1,93 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Forms {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Customers</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Setup</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Routers</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-14">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Router Details</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Site</th>
+                                                <th>Access ID</th>
+                                                <th>Password</th>
+                                                <th>Access URL</th>
+                                                <th>Brand</th>
+                                                <th>Firmware</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for rt in routers %}
+                                            <tr>
+                                                <td>{{rt.router_name}}</td>
+                                                <td>{{rt.select_site.site_name}}</td>
+                                                <td>{{rt.access_id}}</td>
+                                                <td>{{rt.access_pwd}}</td>
+                                                <td>{{rt.access_url}}</td>
+                                                <td>{{rt.brand}}</td>
+                                                <td>{{rt.firmware}}</td>
+                                                {% if rt.router_status == True %}
+                                                <td>Active</td>
+                                                {% else %}
+                                                <td>Inactive</td>
+                                                {% endif %}
+                                                <td>
+                                                    <a href="/edit_router/{{rt.id}}">Edit</a>
+                                                    <a href="/delete_router/{{rt.id}}" onclick="return confirm('Are you sure you want to delete {{rt.router_name}}')">Delete</a>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ Main Content ] end -->
+                <a class="btn btn-success" href="/addrouter">Add Router</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

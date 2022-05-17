@@ -1,0 +1,130 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Forms {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% load static %}
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Router Details</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Action</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Router Overview</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Router Details</h5>
+                            </div>
+                            <div class="card-body">
+                                <table width="70%">
+                                    {% if customer_name %}
+                                    <tr>
+                                        <td>Customer Name</td>
+                                        <td>: </td>
+                                        <td>{{customer_name}}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% if site_name %}
+                                    <tr>
+                                        <td>Site Name</td>
+                                        <td>: </td>
+                                        <td>{{site_name}}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% if router_name %}
+                                    <tr>
+                                        <td>Router Name</td>
+                                        <td>: </td>
+                                        <td>{{router_name}}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% if firmware_version %}
+                                    <tr>
+                                        <td>Firmware Version</td>
+                                        <td>: </td>
+                                        <td>{{firmware_version}}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% if router_uptime %}
+                                    <tr>
+                                        <td>Router Uptime</td>
+                                        <td>: </td>
+                                        <td>{{router_uptime}}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% if local_time %}
+                                    <tr>
+                                        <td>Local Device Time</td>
+                                        <td>: </td>
+                                        <td>{{local_time}}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% if ram_memory_usage %}
+                                    <tr>
+                                        <td>RAM Memory Usage</td>
+                                        <td>: </td>
+                                        <td>{{ram_memory_usage}}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% if flash_memory_usage %}
+                                    <tr>
+                                        <td>Flash Memory Usage</td>
+                                        <td>: </td>
+                                        <td>{{flash_memory_usage}}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% if curr_datetime %}
+                                    <tr>
+                                        <td>Current Date-time</td>
+                                        <td>: </td>
+                                        <td>{{curr_datetime}}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% if local_ip_add %}
+                                    <tr>
+                                        <td>Local IP Address</td>
+                                        <td>: </td>
+                                        <td>{{local_ip_add}}</td>
+                                    </tr>
+                                    {% endif %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ Main Content ] end -->
+                <a class="btn btn-success" href="/router_overview">OK</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+ <script src="{% static 'js/custom-validations.js' %}"></script>
+{% block javascripts %}
+    <!-- <script src="{% static 'app/formset_handlers.js' %}"></script> -->
+{% endblock javascripts %}
